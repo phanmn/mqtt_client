@@ -53,7 +53,7 @@ class MqttServerWsConnection extends MqttServerConnection<WebSocket> {
     try {
       // Connect and save the socket.
       WebSocket.connect(uriString,
-              protocols: protocols.isNotEmpty ? protocols : null)
+              protocols: protocols.isNotEmpty ? protocols : null, headers: {'Connection': 'Upgrade', 'Upgrade': 'websocket'},)
           .then((socket) {
         client = socket;
         readWrapper = ReadWrapper();
@@ -103,7 +103,7 @@ class MqttServerWsConnection extends MqttServerConnection<WebSocket> {
     try {
       // Connect and save the socket.
       WebSocket.connect(uriString,
-              protocols: protocols.isNotEmpty ? protocols : null)
+              protocols: protocols.isNotEmpty ? protocols : null, headers: {'Connection': 'Upgrade', 'Upgrade': 'websocket'},)
           .then((socket) {
         client = socket;
         _startListening();
